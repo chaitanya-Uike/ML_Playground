@@ -1,0 +1,248 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+}
+
+a{
+    text-decoration: none;
+}
+
+.predict-btn{
+    padding: 10px 20px;
+    border-radius: 10px;
+    background-color: #DA0037;
+    border: none;
+    color: #EDEDED;
+    cursor: pointer;
+}
+
+.predict-btn:hover{
+    background-color: #eb2b5b;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    background-color: #171717;
+}
+
+navbar{
+    width: 100%;
+    background-color: #EDEDED;
+    padding: 20px 0;
+}
+
+.top{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+navbar h5{
+    margin-left: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 30px;
+}
+
+navbar p{
+    margin-right: 20px ;
+    font-size: 10px;
+}
+
+nav h4:hover{
+    color: #444444;
+}
+
+.hyperparameters{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.hyperparameters input[type=number]{
+    padding: 5px 0;
+    padding-left: 10px;
+    width: 100px;
+    background-color: #444444;
+    color: #EDEDED;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+}
+
+
+.start-btn{
+    width: 50px;
+    height: 50px;
+    background-color: #DA0037;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    margin-top: 20px;
+    cursor: pointer;
+}
+.start-btn:hover{
+    background-color: #eb2b5b;
+}
+
+
+.graph-container{
+    display: none;
+    margin: 50px 0;
+}
+
+.download-container{
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    margin: 50px 0 20px 0;
+}
+
+.download-btn{
+    display: grid;
+    place-items: center;
+    width: 135px;
+    height: 44px;
+    background-color: #DA0037;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.download-btn i{
+    color: white;
+    font-size: 35px;
+}
+
+.download-btn:hover{
+    background-color: #eb2b5b;
+}
+
+.graph-container h5{
+    color: white;
+}
+
+.start-btn i{
+    font-size: 40px;
+}
+
+main{
+    position: relative;
+    padding-top: 10px ;
+}
+
+.network-container{
+    display: flex;
+    justify-content: space-evenly;
+
+    width: 1500px;
+    height: 650px;
+}
+
+.layer{
+    display: grid;
+    grid-template-rows: auto 1fr;
+    justify-content: center;
+    align-items: center;
+}
+
+.neuron{
+    width: 50px;
+    height: 50px;
+    border: 1px solid gray;
+    background-color: white;
+    border-radius: 50%;
+
+    margin-bottom: 10px;
+}
+
+.neurons{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+svg{
+    position: absolute;
+    z-index: -1;
+}
+
+line{
+    stroke: lightgray;
+    stroke-width: 2px;
+}
+
+.dims-input{
+    width: 50px;
+    margin-bottom: 10px;
+    align-self: center;
+    justify-self: first baseline;
+
+    text-align: center;
+
+    padding:  5px;
+}
+
+.add-layer-btn{
+    width: 60px;
+    height: 60px;
+
+    display: grid;
+    place-items: center;
+
+    position: relative;
+
+    top: 50%;
+    transform: translate(0, -47%);
+
+    border-radius: 10px;
+
+    cursor: pointer;
+}
+
+.add-layer-btn i{
+    font-size: 60px;
+    color: rgba(0, 0, 0, 0);
+}
+
+.neuron-add{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.add-layer-btn:hover{
+    background-color: #DA0037;
+}
+
+.add-layer-btn:hover i{
+    color: white;
+}
+
+.expanded i{
+    font-size: 40px;
+    color: white;
+}
+
+
+
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
