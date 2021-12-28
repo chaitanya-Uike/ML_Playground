@@ -2,7 +2,7 @@ from json.decoder import JSONDecodeError
 from django.http.response import HttpResponse
 from django.shortcuts import render
 from django.http.response import JsonResponse
-from django.core.files.base import ContentFile, File
+from django.core.files.base import File
 from . models import Document
 from . import adam_optimization as ann
 
@@ -14,7 +14,6 @@ import pandas as pd
 import os
 from pathlib import Path
 
-from pprint import pprint
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Create your views here.
@@ -95,8 +94,6 @@ def network(request, session):
 def train(request, session):
     if request.method == "POST":
         data = json.loads(request.body)
-
-        pprint(data)
         
         instance = Document.objects.get(session=session)
         df = pd.read_csv(os.path.join(BASE_DIR, "media", instance.csv.name))
@@ -154,12 +151,13 @@ def train(request, session):
             "config" : data['config']
         }
 
-        a_file = open( f"parameters-{session}.json", "w+")
+        a_file = open(f"parameters-{session}.json", "w+")
         json.dump(dict_data, a_file)
 
         instance.params = File(a_file)
         instance.save()
         a_file.close()
+        os.remove(f"parameters-{session}.json")
         
         ctx = {"file_url" : instance.params.url, "train_cost" : context['train_cost'],"test_cost" : context['test_cost'], "a_train" : context['a_train'], "a_test" : context['a_test'],}
 

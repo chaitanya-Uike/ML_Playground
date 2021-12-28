@@ -26,10 +26,10 @@ def relu(Z):
 
 def softmax(Z):
     expZ = np.exp(Z)
-    return expZ / expZ.sum(axis=1, keepdims=True)
+    return expZ / (expZ.sum(axis=1, keepdims=True) + 1e-8)
 
 def sigmoid(Z):
-    return 1 / (1 + np.exp(-Z))
+    return 1 / (1 + np.exp(-Z) + 1e-8)
 
 def relu_derivative(A):
     return np.where(A<=0, 0, 1)
@@ -161,7 +161,7 @@ def train_minibatch(X_train, Y_train, X_test, Y_test, layers_dims, classificatio
             train_costs.append(c_train)
             test_costs.append(c_test)
 
-            if i % 100 == 0:
+            if i % 10 == 0:
                 print(f' epoch : {i}, train cost : {c_train}, test_cost : {c_test}, training accuracy : {a_train}, testing accuracy : {a_test}')
 
     return {"parameters": parameters, "train_cost" : train_costs, "test_cost" : test_costs, "a_train" : a_train, "a_test" : a_test}

@@ -116,7 +116,6 @@ function addHiddenLayerInput() {
     Array.from(document.getElementsByClassName("add-layer-btn")).forEach(element => {
         element.addEventListener("click", event => {
             let id = event.target.parentElement.id
-            console.log(id);
             layersDims.splice(id - 1, 0, 4)
 
             buildNetwork(layersDims)
