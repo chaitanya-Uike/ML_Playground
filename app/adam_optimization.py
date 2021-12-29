@@ -45,15 +45,22 @@ def forward(X, parameters, classification):
         activations[f'A{L}'] = softmax(activations[f'A{L-1}'].dot(parameters[f'W{L}']) + parameters[f'b{L}'])
     return activations
 
+
+def safeLog(data):
+  min_nonzero = np.min(data[np.nonzero(data)])
+  data[data == 0] = min_nonzero
+  return data
+
 def cost(Y, Yhat, classification, parameters, lambd):
     n = Yhat.shape[0]
     l2 = 0
     for l in range(1,(len(parameters)//2) + 1):
         l2 += np.sum(np.square(parameters[f'W{l}']))
+
     if classification == 'binary':
-        return (-1/n)*((Y*np.log(Yhat) + (1-Y)*np.log(1-Yhat)).sum()) + (lambd / (2*n))*l2
+        return (-1/n)*((Y*np.log(safeLog(Yhat)) + (1-Y)*np.log(1-Yhat)).sum()) + (lambd / (2*n))*l2
     elif classification == 'multiclass':
-        return (-1/n)*((Y*np.log(Yhat)).sum())  + (lambd / (2*n))*l2
+        return (-1/n)*((Y*np.log(safeLog(Yhat))).sum())  + (lambd / (2*n))*l2
 
 def accuracy(Y, Yhat, classification):
     n_total = Y.shape[0]
